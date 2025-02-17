@@ -1,6 +1,9 @@
-
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { useState } from 'react'
 
 const Dashboard = () => {
+  let [isOpen, setIsOpen] = useState(false)
+
 	return   <div className="tw:min-h-screen tw:bg-gray-100 tw:flex tw:items-center tw:justify-center">
 	<section className="h-screen bg-red-500 flex items-center justify-center">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quos.</p>
@@ -20,6 +23,21 @@ const Dashboard = () => {
     </div>
   </div>
 </div>
+
+<button onClick={() => setIsOpen(true)}>Open dialog</button>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="tw-relative tw-z-50">
+        <div className="tw-fixed tw-inset-0 tw-flex tw-w-screen tw-items-center tw-justify-center tw-p-4">
+          <DialogPanel className="tw-max-w-lg tw-space-y-4 tw-border tw-bg-white tw-p-12">
+            <DialogTitle className="tw-font-bold">Deactivate account</DialogTitle>
+            <Description>This will permanently deactivate your account</Description>
+            <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p>
+            <div className="tw-flex tw-gap-4">
+              <button onClick={() => setIsOpen(false)}>Cancel</button>
+              <button onClick={() => setIsOpen(false)}>Deactivate</button>
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
   </div>
 };
 
